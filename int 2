@@ -1,0 +1,18 @@
+// Дана масса M в килограммах. Используя операцию деления нацело, найти количество полных тонн в ней (1 тонна = 1000 кг).
+
+#include "pch.h"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a;
+	cout << "enter Kg" << endl;
+	cin >> a;
+
+	cout << "T = " << a / 1000 << endl;
+
+	return 0;
+
+
+}
