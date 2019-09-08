@@ -1,0 +1,29 @@
+	//  Даны три целых числа: A, B, C. Проверить истинность высказывания: «Хотя бы одно из чисел A, B, C положительное».
+
+	#include "pch.h"
+	#include <iostream>
+	using namespace std;
+
+	int main()
+	{
+		int a;
+		cout << "enter a" << endl;
+		cin >> a;
+		int b;
+		cout << "enter b" << endl;
+		cin >> b;
+		int c;
+		cout << "enter c" << endl;
+		cin >> c;
+
+		if (a>0 or b>0 or c>0) {
+			cout << "one of the numbers is positive" << endl;
+		}
+		else
+		{
+			cout << "all numbers are negative" << endl;
+		}
+		return 0;
+
+
+	}
