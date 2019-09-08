@@ -1,0 +1,18 @@
+//  С начала суток прошло N секунд (N — целое). Найти количество полных минут, прошедших с начала последнего часа.
+
+#include "pch.h"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a;
+	cout << "enter a" << endl;
+	cin >> a;
+
+	cout << a % (60 * 60) / 60 << endl;
+
+	return 0;
+
+
+}
