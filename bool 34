@@ -1,0 +1,29 @@
+	//  Даны координаты поля шахматной доски x, y (целые числа, лежащие в диапазоне 1–8).
+	//	Учитывая, что левое нижнее поле доски (1, 1) является черным, проверить истинность высказывания: «Данное поле является белым».
+
+	#include "pch.h"
+	#include <iostream>
+	using namespace std;
+
+	int main()
+	{
+		int x;
+		cout << "enter x" << endl;
+		cin >> x;
+		int y;
+		cout << "enter y" << endl;
+		cin >> y;
+
+		if ((x + y) % 2 != 0)
+		{
+			cout << "white field" << endl;
+		}
+		else
+		{
+			cout << "black field" << endl;
+		}
+
+		return 0;
+
+
+	}
