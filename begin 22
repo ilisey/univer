@@ -1,0 +1,25 @@
+// Поменять местами содержимое переменных A и B и вывести новые значения A и B.
+
+#include "pch.h"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a;
+	cout << "enter a"<< endl;
+	cin >> a;
+	int b;
+	cout << "enter b" << endl;
+	cin >> b;
+	
+	a = a + b;
+	b = a - b;
+	a = a - b;
+
+	cout << "a= " << a << endl;
+	cout << "b= " << b << endl;
+	return 0;
+
+
+}
