@@ -1,0 +1,18 @@
+// Дано трехзначное число. В нем зачеркнули первую слева цифру и приписали ее справа. Вывести полученное число.
+
+#include "pch.h"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a;
+	cout << "enter three-digit number" << endl;
+	cin >> a;
+
+	cout << a / 100 + (a % 100) * 10 << endl;
+
+	return 0;
+
+
+}
