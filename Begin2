@@ -1,0 +1,17 @@
+// Дана сторона квадрата a. Найти его площадь S = a^2
+
+#include "pch.h"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a;
+	cout << "enter a"<< endl;
+	cin >> a;
+	int S = a*a;
+	cout << "S = " << S << endl;
+	return 0;
+
+
+}
