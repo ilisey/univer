@@ -1,0 +1,30 @@
+// Даны два ненулевых числа. Найти сумму, разность, произведение и частное их модулей.
+
+#include "pch.h"
+#include <iostream>
+using namespace std;
+
+int main()
+{
+	int a;
+	cout << "enter a (a!=0)"<< endl;
+	cin >> a;
+	int b;
+	cout << "enter b (b!=0)" << endl;
+	cin >> b;
+	
+	if (a != 0 and b != 0)
+	{
+		cout << "|a|+|b|= " << abs(a) + abs(b) << endl;
+		cout << "|a|-|b|= " << abs(a) - abs(b) << endl;
+		cout << "|a|*|b|= " << abs(a) * abs(b) << endl;
+		cout << "|a|/|b|= " << abs(a) / abs(b) << endl;
+	}
+	else
+	{
+		cout << "eror";
+	}
+	return 0;
+
+
+}
