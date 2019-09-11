@@ -1,0 +1,46 @@
+//Дано целое число, лежащее в диапазоне 1–999. Вывести его строку-описание вида «четное двузначное число», «нечетное трехзначное число».
+
+#include "pch.h"
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+	int a;
+	cout << "enter a (0 < a < 1000) " << endl;
+	cin >> a;
+
+	if ((a <= 0) | (a >= 1000))
+	{
+		cout << "error" << endl;
+		exit(0);
+	}
+
+	if ((a % 2) > 0)
+	{
+		cout << "odd ";
+	}
+	else
+	{
+		cout << "even ";
+	}
+
+	if ((a / 100) > 0)
+	{
+		cout << "three-digit number" << endl;
+	}
+
+	else if ((a / 10) > 0)
+	{
+		cout << "double-digit number" << endl;
+	}
+
+	else
+	{
+		cout << "single digit number" << endl;
+	}
+	return 0;
+
+
+}
