@@ -1,0 +1,42 @@
+	//Даны три числа. Вывести вначале наименьшее, а затем наибольшее из данных чисел.
+
+	#include "pch.h"
+	#include <iostream>
+	using namespace std;
+
+	int main()
+	{
+		int a,b,c;
+		cout << "enter a,b,c " << endl;
+		cin >> a>>b>>c;
+
+		if ((a > b) & (a > c))
+		{
+			cout << a << endl;
+		}
+		else if ((b > a) & (b > c))
+		{
+			cout << b << endl;
+		}
+		else
+		{
+			cout << c << endl;
+		}
+		
+		if ((a < b) & (a < c))
+		{
+			cout << a << endl;
+		}
+		else if ((b < a) & (b < c))
+		{
+			cout << b << endl;
+		}
+		else
+		{
+			cout << c << endl;
+		}
+
+		return 0;
+
+
+	}
