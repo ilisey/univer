@@ -1,0 +1,62 @@
+#include "pch.h"
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+	int a, b, c, d, e, f, g;
+	cout << "enter 7 numbers" << endl;
+	cin >> a >> b >> c >> d >> e >> f >> g;
+	const int n = 7;
+	int arr[] = { a,b,c,d,e,f,g };
+	int max = arr[0];
+	int min = arr[0];
+	int minp = arr[0];
+	int sum = 0;
+
+	for (int i = 0; i < 7; ++i)
+	{
+		if (arr[i] < min)
+		{
+			min = arr[i];
+		}
+
+	}
+
+	for (int i = 0; i < 7; ++i)
+	{
+		if (arr[i] > max)
+		{
+			max = arr[i];
+		}
+	}
+
+	for (int i = 0; i < 7; ++i)
+	{
+		if (arr[i] < min >0)
+		{
+			minp = arr[i];
+		}
+	}
+
+	for (int i = 0; i < 7; ++i)
+	{
+		if (arr[i] > 0)
+		{
+			sum += arr[i];
+		}
+	}
+	
+	for (int i = 0; i < 7; ++i)
+	{
+		if (arr[i] > max)
+		{
+			max = arr[i];
+		}
+	}
+
+	cout << "1) " << min << endl;
+	cout << "2) " << sum- minp - max << endl;
+	
+}
