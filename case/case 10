@@ -1,0 +1,28 @@
+#include "pch.h"
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+	int A;
+	cout << "enter A (0 or 1 or 2)" << endl;
+	cin >> A;
+
+	switch (A)
+	{
+	case 0:
+		cout << "N" << endl;
+		break;
+	case 1:
+		cout << "W" << endl;
+		break;
+	case 2:
+		cout << "E" << endl;
+		break;
+	default :
+		cout << "A must be 0 or 1 or 2" << endl;
+	}
+	
+	return 0;
+}
