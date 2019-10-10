@@ -1,0 +1,88 @@
+/* Case20. Даны два целых числа: D (день) и M (месяц), определяющие правильную дату.
+Вывести знак Зодиака, соответствующий этой дате */
+
+#include "pch.h"
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+	setlocale(LC_ALL, "rus");
+	int D, M;
+	cout << "Enter Day & Month " << endl;
+	cin >> D >> M;
+	if (D<1 or D>31 or M<1 or M>12)
+	{
+		cout << "invalid date" << endl;
+	}
+	else
+	{
+
+
+		switch (M)
+		{
+		case 1:
+			if (D < 20)
+				cout << "Козерог" << endl;
+			else cout << "Водолей" << endl;
+			break;
+		case 2:
+			if (D < 19)
+				cout << "Водолей" << endl;
+			else cout << "Рыбы" << endl;
+			break;
+		case 3:
+			if (D < 20)
+				cout << "Рыбы" << endl;
+			else cout << "Овен" << endl;
+			break;
+		case 4:
+			if (D < 20)
+				cout << "Овен" << endl;
+			else cout << "Телец" << endl;
+			break;
+		case 5:
+			if (D < 21)
+				cout << "Телец" << endl;
+			else cout << "Близнецы" << endl;
+			break;
+		case 6:
+			if (D < 21)
+				cout << "Близнецы" << endl;
+			else cout << "Рак" << endl;
+			break;
+		case 7:
+			if (D < 22)
+				cout << "Рак" << endl;
+			else cout << "Лев" << endl;
+			break;
+		case 8:
+			if (D < 23)
+				cout << "Лев" << endl;
+			else cout << "Дева" << endl;
+			break;
+		case 9:
+			if (D < 23)
+				cout << "Дева" << endl;
+			else cout << "Весы" << endl;
+			break;
+		case 10:
+			if (D < 23)
+				cout << "Весы" << endl;
+			else cout << "Скорпион" << endl;
+			break;
+		case 11:
+			if (D < 22)
+				cout << "Скорпион" << endl;
+			else cout << "Стрелец" << endl;
+			break;
+		case 12:
+			if (D < 21)
+				cout << "Стрелец" << endl;
+			else cout << "Козерог" << endl;
+		}
+
+	}
+	return 0;
+}
