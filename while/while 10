@@ -14,7 +14,7 @@ int main()
 	cout << "enter N (N>1) " << endl;
 	cin >> N;
 
-	if (N<0)
+	if (N<1)
 	{
 		cout << "invalid N " << endl;
 		return 0;
