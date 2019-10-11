@@ -13,7 +13,7 @@ int main()
 	cout << "enter K,N " << endl;
 	cin >> K >> N;
 
-	for (int i = 1; i <= N; ++i)
+	for (int i = 1; i <= N; i++)
 	{
 		cout << "enter "<<i<<" number " << endl;
 		cin >> r;
