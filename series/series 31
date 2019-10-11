@@ -1,0 +1,29 @@
+/* Series31. Даны целые числа K, N, а также K наборов целых чисел по N элементов в каждом
+наборе.Найти количество наборов, содержащих число 2. Если таких наборов нет, то вывести 0. */
+
+#include "pch.h"
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+int main()
+{
+	int N, K,a, f = 0, s = 0;
+	cout << "enter N, K " << endl;
+	cin >> N >> K;
+
+	for (int ki = 1; ki <= K; ki++, f = 0) {
+		for (int ni = 1; ni <= N; ni++) {
+			cout << "enter " << ki<<" " << ni << endl;
+			cin >> a;
+			if (a == 2) f = 1;
+		}
+		s += f;
+
+	}
+
+	cout <<"s = "<< s << endl;
+
+	return 0;
+}
