@@ -1,0 +1,20 @@
+/* Series1. Даны десять вещественных чисел. Найти их сумму. */
+
+#include "pch.h"
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+int main()
+{
+	float  sum = 0, r;
+	int i;
+	for (i = 1; i <= 10; ++i) {
+		cout << "enter number " << endl;
+		cin >> r;
+		sum += r;
+	}
+	cout <<"sum = "<< sum << endl;
+	return 0;
+}
