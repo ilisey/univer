@@ -1,0 +1,30 @@
+/*While10. Дано целое число N (> 1). Найти наибольшее целое число K, при ко-
+тором выполняется неравенство 3^K < N. */
+
+#include "pch.h"
+#include <iostream>
+#include <cstdlib>
+#include <cmath>
+
+using namespace std;
+
+int main()
+{
+	int N, k=0;
+	cout << "enter N (N>1) " << endl;
+	cin >> N;
+
+	if (N<0)
+	{
+		cout << "invalid N " << endl;
+		return 0;
+	}
+
+	while (pow(3, k) < N)
+	{
+		k++;
+	}
+
+	cout << k << endl;
+	return 0;
+}
