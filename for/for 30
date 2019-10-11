@@ -28,7 +28,8 @@ int main()
 	cout << h << endl;
 
 	int i;
-	for (i = 0; i <= N; ++i) {
+	for (i = 0; i <= N; i++)
+	{
 		cout << 1 - sin(a + i * h) << endl;
 	}
 
