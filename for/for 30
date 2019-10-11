@@ -1,0 +1,36 @@
+/* For30. Дано целое число N (> 1) и две вещественные точки на числовой оси:
+A, B (A < B). Отрезок [A, B] разбит на N равных отрезков. 
+Вывести H — длину каждого отрезка, а также значения функции F(X) = 1 – sin(X) в точ-
+ках, разбивающих отрезок [A, B]:F(A), F(A + H), F(A + 2·H), ..., F(B). */
+
+#include "pch.h"
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+	int N, fact = 1, sum = 0;
+	cout << "enter N (N>1) " << endl;
+	cin >> N;
+
+	float a, b;
+	cout << "enter a & b " << endl;
+	cin >> a >> b;
+
+	if (N < 1)
+	{
+		cout << "invalid N " << endl;
+		return 0;
+	}
+
+	float h = (b - a) / N;
+	cout << h << endl;
+
+	int i;
+	for (i = 0; i <= N; ++i) {
+		cout << 1 - sin(a + i * h) << endl;
+	}
+
+	return 0;
+}
