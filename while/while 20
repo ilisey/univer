@@ -1,0 +1,38 @@
+/*While20. Дано целое число N (> 0). С помощью операций деления нацело и взятия
+остатка от деления определить, имеется ли в записи числа N цифра «2».
+Если имеется, то вывести True, если нет — вывести False. */
+
+#include "pch.h"
+#include <iostream>
+#include <cstdlib>
+
+using namespace std;
+
+int main()
+{
+	int N;
+	cout << "enter N (N>0) " << endl;
+	cin >> N;
+
+	if (N<0)
+	{
+		cout << "invalid N " << endl;
+		return 0;
+	}
+
+	while ((N > 0)&((N % 10) != 2))
+	{
+		N /= 10;
+	}
+	
+	bool a((N > 0)&((N % 10) == 2));
+	if (a = 0)
+	{
+		cout << "false " << endl;
+	}
+	else
+	{
+		cout << "true " << endl;
+	}
+	return 0;
+}
