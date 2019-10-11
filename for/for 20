@@ -1,0 +1,34 @@
+/* For20°. Дано целое число N (> 0). Используя один цикл,
+ найти сумму 1! + 2! + 3! + ... + N!
+ Чтобы избежать целочисленного переполнения,
+ проводить вычисления с помощью вещественных переменных и 
+ вывести результат как вещественное число. */
+
+#include "pch.h"
+#include <iostream>
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+	int N, fact = 1, sum = 0;
+	cout << "enter N (N>0) " << endl;
+	cin >> N;
+
+	if (N < 0)
+	{
+		cout << "invalid N " << endl;
+		return 0;
+	}
+
+	for (int i = 1; i <= N; i++)
+	{
+		fact = fact * i;
+		sum += fact;
+	}
+
+	cout << "sum = " << sum << endl;
+
+
+	return 0;
+}
