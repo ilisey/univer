@@ -1,0 +1,71 @@
+  
+#include <stdio.h>
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <conio.h>
+using namespace std;
+
+//Variant 1
+
+int main()
+{
+	const int c = 10;
+	float a[c];
+	int i;
+	for (i = 0; i < c; ++i) {
+		cout << i + 1 << " <----/----> ";
+		cin >> a[i];
+		cout << endl;
+	}
+	float sum = 0;
+	for (i = 0; i < c; ++i) {
+		if (a[i] < 0) {
+			sum += a[i];
+		}
+	}
+
+	int nummin = 0, nummax = 0;
+	float amin = a[0], amax = a[0];
+	for (i = 1; i < c; ++i) {
+		if (a[i] < amin) {
+			amin = a[i];
+			nummin = i;
+		}
+		if (a[i] > amax) {
+			amax = a[i];
+			nummax = i;
+		}
+	}
+	float proizv;
+	if (nummin < nummax) {
+		int temp;
+		temp = nummax;
+		nummax = nummin;
+		nummin = temp;
+	}
+	if ((nummax + 1) == nummin) proizv = 0;
+	else if((nummax + 1) != nummin){
+		proizv = a[nummax + 1];
+		for (i = nummax + 2; i < nummin; ++i) {
+			proizv *= a[i];
+		}
+	}
+
+	for (i = 0; i < c; i++) {
+		for (int j = 0; j < c - 1; j++) {
+			if (a[j] > a[j + 1]) {
+				float temp = a[j];
+				a[j] = a[j + 1];
+				a[j + 1] = temp;
+			}
+		}
+	}
+	cout << endl;
+	cout << "Summ of negative elements = " << sum << endl;
+	cout << "Proizvedenie elementov mezhdu max i min = " << proizv << endl;
+	cout << "Sorted mass: \n";
+	for (i = 0; i < c; ++i) cout << i + 1 << " <----/----> " << a[i] << endl;
+	cout << endl;
+	return 0;
+}
