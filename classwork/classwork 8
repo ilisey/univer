@@ -1,0 +1,113 @@
+#include <iostream>
+#include <stdio.h>
+#include <fstream>
+
+
+using namespace std;
+
+//Variant 1
+
+struct student
+{
+	char name[64];
+	int num;
+	int mark[5];
+};
+
+void Students(student*& students, int& n, float*& averagemark) {
+	for (int i = 0; i < n; ++i) {
+		cout << i + 1 << ':' << endl;
+		cout << "Enter name: ";
+		while (students[i].name[0] == '\0' || students[i].name[0] < 0) {
+			cin.getline(students[i].name, 64);
+		}
+		cout << "Enter number of group: ";
+		do {
+			cin >> students[i].num;
+		} while (students[i].num <= 0||!isdigit(students[i].num));
+		cout << "Enter marks: ";
+		for (int j = 0; j < 5; ++j) {
+			do {
+				cin >> students[i].mark[j];
+			} while (students[i].mark[j] < 0 || !isdigit(students[i].mark[j])|| students[i].mark[j] > 5);
+		}
+		cout << endl;
+	}
+
+	for (int i = 0; i < n; ++i) {
+		averagemark[i] = 0;
+	}
+	for (int i = 0; i < n; ++i) {
+		for (int j = 0; j < 5; ++j) {
+			averagemark[i] += students[i].mark[j];
+		}
+		averagemark[i] /= 5;
+	}
+	char temp[64];
+	for (int i = 0; i < n; ++i) {
+		for (int j = i; j < n; ++j) {
+			if (students[j].num < students[i].num) {
+				strcpy_s(temp, students[i].name);
+				strcpy_s(students[i].name, students[j].name);
+				strcpy_s(students[j].name, temp);
+				float temp1;
+				temp1 = averagemark[i];
+				averagemark[i] = averagemark[j];
+				averagemark[j] = temp1;
+				int temp2 = students[i].num;
+				students[i].num = students[j].num;
+				students[j].num = temp2;
+			}
+		}
+	}
+
+	int count = 0;
+	for (int i = 0; i < n; ++i) {
+		if (averagemark[i] >= 4) {
+			count++;
+			break;
+		}
+	}
+	if (count == 0) {
+		cout << "All students aren't good!\n";
+		return;
+	}
+}
+
+int main()
+{
+	int n;
+	cout << "Enter number of students: ";
+	cin >> n;
+	if (n <= 0) {
+		cout << "There are no students!\n";
+		return 0;
+	}
+	student* students = new student[n];
+	float* averagemark = new float[n];
+	Students(students, n, averagemark);
+	cout << endl;
+
+	ofstream file("Strange school");
+	for (int i = 0; i < n; ++i) {
+		file.write((char*)&students[i], sizeof(student));
+	}
+	file.close();
+
+	ifstream file1("Strange school");
+	for (int i = 0; i < n; ++i) {
+		file1.read((char*)&students[i], sizeof(student));
+		if (averagemark[i] >= 4) {
+			cout << endl;
+			cout << i + 1 << ':' << endl;
+			cout << "   Name: ";
+			cout << students[i].name << endl;
+			cout << "   Group: ";
+			cout << students[i].num << endl;
+		}
+	}
+	file1.close();
+	delete[] averagemark;
+	delete[] students;
+	return 0;
+}
