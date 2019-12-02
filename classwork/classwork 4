@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <iostream>
+
+
+using namespace std;
+int Nullseeker(int** arr, int n, int m);
+int Maxseeker(int** arr, int n, int m);
+
+int main()
+{
+	int n, m, i, j;
+	cout << "Enter the order of marix (N and M):\n";
+	cin >> n >> m;
+	int** Parr = new int* [n];
+	for (i = 0; i < n; ++i) {
+		Parr[i] = new int[m];
+	}
+	cout << "Elements:\n";
+	for (i = 0; i < n; ++i) {
+		for (j = 0; j < m; ++j) {
+			cin >> Parr[i][j];
+		}
+	}
+	cout << "\n";
+
+	cout << endl;
+	cout << "Number of rows without zero elements = " << Nullseeker(Parr, n, m) << "\n";
+	cout << "Max of elements which are more than 1 time in this matrix = " << Maxseeker(Parr, n, m) << "\n";
+	for (i = 0; i < n; ++i) {
+		delete[] Parr[i];
+	}
+	delete[]Parr;
+	return 0;
+}
+
+int Nullseeker(int** arr, int n, int m) {
+	int countstr = 0; bool l;
+	for (int i = 0; i < n; ++i) {
+		l = false;
+		for (int j = 0; j < m; ++j) {
+			if (arr[i][j] != 0) l = true; break;
+		}
+		if (!l) countstr++;
+	}
+	return countstr;
+}
+
+int Maxseeker(int** arr, int n, int m) {
+	int max = arr[0][0];
+
+	for (int i = 0; i < n; ++i) {
+		for (int j = 0; j < m; ++j) {
+			for (int k = i; k < n; ++k) {
+				for (int l = 0; l < m; ++l) {
+					if (arr[i][j] == arr[k][l] && (k != i && l != j) && arr[i][j] > max) max = arr[i][j];
+				}
+			}
+		}
+	}
+	return max;
+}
