@@ -1,0 +1,182 @@
+#include <stdio.h>
+#include <iostream>
+using namespace std;
+
+struct point {
+	float x, y;
+};
+
+
+int IsPointInsideTriangola(point a, point b, point c, point x);
+void ConvexHullJarvisAlt(int n, const point mas[], point convex_hull[]);
+bool isInside(const point& p1, const point& p, const point& p2);
+float OrientTriangl2(const point& p1, const point& p2, const point& p3);
+float square(point a, point b, point c);
+
+int main()
+{
+	int n, m, i, j;
+	cout << "Enter number of points (first n-tangle):\n";
+	cin >> n;
+	point* mas1 = new point[n];
+	cout << "Enter coordinates of first n-tangle:\n";
+	for (i = 0; i < n; ++i) {
+		cout << i + 1 << " ---> ";
+		cin >> mas1[i].x >> mas1[i].y;
+	}
+	cout << "Enter number of points (second m-tangle):\n";
+	cin >> m;
+	point* mas2 = new point[m];
+	cout << "Enter coordinates of second m-tangle:\n";
+	for (i = 0; i < m; ++i) {
+		cout << i + 1 << " ---> ";
+		cin >> mas2[i].x >> mas2[i].y;
+	}
+	point* convex_hull_1 = new point[n];
+	point* convex_hull_2 = new point[m];
+	ConvexHullJarvisAlt(n, mas1, convex_hull_1);
+	ConvexHullJarvisAlt(m, mas2, convex_hull_2);
+
+
+
+
+	point centermass1, centermass2;
+
+	float sumx = 0, sumy = 0;
+
+	for (i = 0; i < n; ++i) {
+		sumx += mas1[i].x;
+		sumy += mas1[i].y;
+	}
+
+	centermass1.x = (sumx / n);
+	centermass1.y = (sumy / n);
+	sumx = 0;
+	sumy = 0;
+
+	for (i = 0; i < m; ++i) {
+		sumx += mas2[i].x;
+		sumy += mas2[i].y;		
+	}
+
+	centermass2.x = (sumx / m);
+	centermass2.y = (sumy / m);
+	sumx = 0;
+	sumy = 0;
+
+	float Square1 = square(centermass1, mas1[n - 1], mas1[0]), Square2 = square(centermass2, mas2[n - 1], mas2[0]);  //Площади
+
+	for (i = 0; i < n - 1; ++i) {
+		Square1 += square(centermass1, mas1[i], mas1[i + 1]);
+
+	}
+
+	for (i = 0; i < m - 1; ++i) {
+		Square2 += square(centermass2, mas2[i], mas2[i + 1]);
+
+	}
+	bool IsInside = 1;
+
+	//Проверка на принадлежность 
+	for (i = 0; i < m; ++i) {
+		for (j = 0; j < n - 1; ++j) {
+			if (IsPointInsideTriangola(centermass1, mas1[i], mas1[i + 1], mas2[i]) || IsPointInsideTriangola(centermass1, mas1[0], mas1[n - 1], mas2[i])) {
+				IsInside = 1;
+				continue;
+			}
+			else IsInside = 0; 
+			if (j == n - 2 && IsInside == 0) {
+				cout << "Square first = " << Square1 << endl;
+				cout << "Square second = " << Square2 << endl;
+				cout << "The second m-tangle is not fully inside of the first n-tangle\n";
+				return 0;
+			}
+		}
+	}
+	if (IsInside == 1) {
+		cout << "Square first = " << Square1 << endl;
+		cout << "Square second = " << Square2 << endl;
+		cout << "The second m-tangle is inside of the first n-tangle\n";
+	}
+	delete[] mas1;
+	delete[] mas2;
+	delete[] convex_hull_1;
+	delete[] convex_hull_2;
+	return 0;
+}
+
+bool isInside(const point& p1, const point& p, const point& p2)
+{
+	return (p1.x <= p.x && p.x <= p2.x &&
+		p1.y <= p.y && p.y <= p2.y);
+}
+
+float OrientTriangl2(const point& p1, const point& p2, const point& p3)
+{
+	return (p1.x - p2.x) * (p3.y - p2.y) - (p3.x - p2.x) * (p1.y - p2.y);
+}
+
+void ConvexHullJarvisAlt(int n, const point mas[], point convex_hull[])
+{
+	// находим самую левую из самых нижних
+	int base = 0;
+	for (int i = 1; i < n; i++)
+	{
+		if (mas[i].y < mas[base].y)
+			base = i;
+		else
+			if (mas[i].y == mas[base].y &&
+				mas[i].x < mas[base].x)
+				base = i;
+	}
+	// эта точка точно входит в выпуклую оболочку
+	convex_hull[base] = mas[base];
+
+	int first = base;
+	int cur = base;
+	do
+	{
+		int next = (cur + 1) % n;
+		for (int i = 0; i < n; i++)
+		{
+			int sign = OrientTriangl2(mas[cur], mas[next], mas[i]);
+			// точка mas[i] находится левее прямой ( mas[cur], mas[next] )
+			if (sign < 0) // обход выпуклой оболочки против часовой стрелки
+				next = i;
+			// точка лежит на прямой, образованной точками  mas[cur], mas[next]
+			else if (sign == 0)
+			{
+				// точка mas[i] находится дальше, чем mas[next] от точки mas[cur]
+				if (isInside(mas[cur], mas[next], mas[i]))
+					next = i;
+			}
+		}
+		cur = next;
+		convex_hull[next] = mas[next];
+	} while (cur != first);
+}
+
+
+float square(point a, point b, point c) {
+	return ((abs((a.x - b.x) * (c.y - b.y) - (c.x - b.x) * (a.y - b.y))) / 2);
+}
+
+/*int NotTriangola(point p1, point p2, point p3)
+{
+	if (sqrt(pow((p1.x - p2.x), 2) + pow((p1.y - p2.y), 2)) == (sqrt(pow((p1.x - p3.x), 2) + pow((p1.y - p3.y), 2)) + sqrt(pow((p2.x - p3.x), 2) + pow((p2.y - p3.y), 2)))) {
+		return 1;
+	}
+	return 0;
+}*/
+
+int IsPointInsideTriangola(point a, point b, point c, point x) {
+	float Square, Square1, Square2, Square3;
+	Square = square(a, b, c);
+	Square1 = square(b, x, a);
+	Square2 = square(c, x, b);
+	Square3 = square(a, x, c);
+
+	float sum = Square1 + Square2 + Square3;
+	if (sum > Square) return 0;
+	else return 1;
+}
