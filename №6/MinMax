@@ -1,0 +1,124 @@
+#include <stdio.h>
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <stdlib.h>
+#include <conio.h>
+#include "MyLib.h";
+using namespace std;
+
+/*Minmax10. Äàíî öåëîå ÷èñëî N è íàáîð èç N öåëûõ ÷èñåë. Íàéòè íîìåð ïåðâîãî ýêñòðåìàëüíîãî (òî åñòü ìèíèìàëüíîãî èëè ìàêñèìàëüíîãî) ýëåìåíòà èç äàííîãî íàáîðà.*/
+
+int MinMax_10()
+{
+	int a,n;
+	int max, min;
+	int extrem;
+	int nmax, nmin;
+	cout << "Enter number of numeric: ";
+	cin >> n;
+	cin >> a;
+	max = a;
+	min = a;
+	nmin = 1;
+	nmax = 1;
+	for (int i = 2; i <= n; i++) {
+		cin >> a;
+		if (a > max) {
+			max = a;
+			nmax = i;
+		}
+		if (a < min) {
+			min = a;
+			nmin = i;
+		}
+	}
+	extrem = (nmax < nmin) ? nmax : nmin;
+	cout << "Number of the first extrem element: ";
+	cout << extrem << endl;
+	return 0;
+}
+
+/*Minmax16. Äàíî öåëîå ÷èñëî N è íàáîð èç N öåëûõ ÷èñåë. Íàéòè êîëè÷åñòâî ýëåìåíòîâ, ðàñïîëîæåííûõ ïåðåä ïåðâûì ìèíèìàëüíûì ýëåìåíòîì.*/
+
+int MinMax_16()
+{
+	int a, n;
+	int min;
+	int answer; 
+	int N = 0;
+	cout << "Enter N: ";
+	cin >> n;
+	cin >> a;
+	min = a;
+	for (int i = 2; i <= n; i++) {
+		cin >> a;
+		N++;
+		if (a < min) {
+			min = a;
+			answer = N;
+		}
+	}
+	cout << endl << "Number of elements before this minimum = " << answer << endl;
+	return 0;
+}
+
+/*Minmax23. Äàíî öåëîå ÷èñëî N(>3) è íàáîð èç N ÷èñåë. Íàéòè òðè íàèáîëüøèõ ýëåìåíòà èç äàííîãî íàáîðà è âûâåñòè ýòè ýëåìåíòû â ïîðÿäêå óáûâàíèÿ èõ çíà÷åíèé.*/
+
+int MinMax_23()
+{
+	double a, n;
+	double max1, max2, max3;
+	cout << "Enter number of digits: ";
+	cin >> n;
+	cin >> a;
+	max1 = a;
+	max2 = a;
+	max3 = a;
+	for (int i = 2; i <= n; i++) {
+		cin >> a;
+		if (max1 > a) max2 = a;
+		else {
+			max2 = max1;
+			max1 = a;
+		}
+		if (a >= max1) {
+			max3 = max2;
+			max2 = max1;
+			max1 = a;
+		}
+		else if (max1 > a && a >= max2) {
+			max3 = max2;
+			max2 = a;
+		}
+		else max3 = a;
+		if (a > max1) {
+			max3 = max2; max2 = max1; max1 = a;
+		}
+		else if (a > max2) {
+			max3 = max2; max2 = a;
+		}
+		else if (a > max3) max3 = a;
+	}
+	return 0;
+}
+
+/*Minmax26. Äàíî öåëîå ÷èñëî N è íàáîð èç N öåëûõ ÷èñåë. Íàéòè ìàêñèìàëüíîå êîëè÷åñòâî ÷åòíûõ ÷èñåë â íàáîðå, èäóùèõ ïîäðÿä. Åñëè ÷åòíûå ÷èñëà â íàáîðå îòñóòñòâóþò, òî âûâåñòè 0.*/
+
+int MinMax_26()
+{
+	int n, i, ni, num = 0, maxnum = 0;
+	cout << "N = ";
+	cin >> n;
+	for (i = 0; i < n; ++i) {
+		cin >> ni;
+		if (ni % 2 == 0) ++num;
+		else {
+			if (num > maxnum) maxnum = num;
+			num = 0;
+		}
+	}
+	if (num > maxnum) maxnum = num;
+	cout << "Mxnum = " << maxnum << endl;
+	return 0;
+}
