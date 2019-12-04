@@ -6,8 +6,6 @@
 #include <conio.h>
 using namespace std;
 
-//Variant 1
-
 int main()
 {
 	const int c = 10;
