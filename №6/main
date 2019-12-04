@@ -1,0 +1,157 @@
+#include <stdio.h>
+#include <iostream>
+#include <cmath>
+#include <algorithm>
+#include <conio.h>
+#include "MyLib.h";
+using namespace std;
+
+int menu_1();
+int menu_2();
+int menu_3();
+int menu();
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	int answer = menu();
+	switch (answer)
+	{
+	case 0: {int answer_1 = menu_1();
+		switch (answer_1) {
+		case 0: Series_2(); break;
+		case 1: Series_13(); break;
+		case 2: Series_21(); break;
+		case 3: Series_23(); break;
+		case 4: return 0;
+		}
+	}; break;
+	case 1: {int answer_2 = menu_2();
+		switch (answer_2) {
+		case 0: Proc_5(); break;
+		case 1: Proc_12(); break;
+		case 2: Proc_17(); break;
+		case 3: Proc_33(); break;
+		case 4: return 0;
+		}
+	}; break;
+	case 2: {int answer_3 = menu_3();
+		switch (answer_3) {
+		case 0: MinMax_10(); break;
+		case 1: MinMax_16(); break;
+		case 2: MinMax_23(); break;
+		case 3: MinMax_26(); break;
+		case 4: return 0;
+		}; break;
+	}; return 0;
+		system("pause");
+		return 0;
+	}
+}
+
+int menu() {
+	int key = 0;
+	int code;
+	do {
+		system("cls");
+		key = (key + 3) % 3;
+		if (key == 0) cout << "-> Series" << endl;
+		else  cout << "   Series" << endl;
+		if (key == 1) cout << "-> Proc" << endl;
+		else  cout << "   Proc" << endl;
+		if (key == 2) cout << "-> MinMax" << endl;
+		else  cout << "   MinMax" << endl;
+		code = _getch();
+		if (code == 224)
+		{
+			code = _getch();
+			if (code == 80) key++;
+			if (code == 72) key--;
+		}
+	} while (code != 13);
+	system("cls");
+	return key;
+}
+
+int menu_1() {
+	int key = 0;
+	int code;
+	do {
+		system("cls");
+		key = (key + 5) % 5;
+		if (key == 0) cout << "-> Series_2" << endl;
+		else  cout << "   Series_2" << endl;
+		if (key == 1) cout << "-> Series_13" << endl;
+		else  cout << "   Series_13" << endl;
+		if (key == 2) cout << "-> Series_21" << endl;
+		else  cout << "   Series_21" << endl;
+		if (key == 3) cout << "-> Series_23" << endl;
+		else  cout << "   Series_23" << endl;
+		if (key == 4) cout << "-> 5 == GO BACK" << endl;
+		else  cout << "   5 == GO BACK" << endl;
+		code = _getch();
+		if (code == 224)
+		{
+			code = _getch();
+			if (code == 80) key++;
+			if (code == 72) key--;
+		}
+	} while (code != 13);
+	system("cls");
+	return key;
+}
+
+int menu_2() {
+	int key = 0;
+	int code;
+	do {
+		system("cls");
+		key = (key + 5) % 5;
+		if (key == 0) cout << "-> Proc_5" << endl;
+		else  cout << "   Proc_5" << endl;
+		if (key == 1) cout << "-> Proc_12" << endl;
+		else  cout << "   Proc_12" << endl;
+		if (key == 2) cout << "-> Proc_17" << endl;
+		else  cout << "   Proc_17" << endl;
+		if (key == 3) cout << "-> Proc_33" << endl;
+		else  cout << "   Proc_33" << endl;
+		if (key == 4) cout << "-> 5 == GO BACK" << endl;
+		else  cout << "   5 == GO BACK" << endl;
+		code = _getch();
+		if (code == 224)
+		{
+			code = _getch();
+			if (code == 80) key++;
+			if (code == 72) key--;
+		}
+	} while (code != 13);
+	system("cls");
+	return key;
+}
+
+int menu_3() {
+	int key = 0;
+	int code;
+	do {
+		system("cls");
+		key = (key + 5) % 5;
+		if (key == 0) cout << "-> MinMax_10()" << endl;
+		else  cout << "   MinMax_10()" << endl;
+		if (key == 1) cout << "-> MinMax_16()" << endl;
+		else  cout << "   MinMax_16()" << endl;
+		if (key == 2) cout << "-> MinMax_23()" << endl;
+		else  cout << "   MinMax_23()" << endl;
+		if (key == 3) cout << "-> MinMax_23()" << endl;
+		else  cout << "   MinMax_23()" << endl;
+		if (key == 4) cout << "-> 5 == GO BACK" << endl;
+		else  cout << "   5 == GO BACK" << endl;
+		code = _getch();
+		if (code == 224)
+		{
+			code = _getch();
+			if (code == 80) key++;
+			if (code == 72) key--;
+		}
+	} while (code != 13);
+	system("cls");
+	return key;
+}
